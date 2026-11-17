@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>تقرير حالات الإلغاء – أبريل إلى 16 نوفمبر</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3f5f8; --surface:#fff; --ink:#0f1f2e; --ink2:#586675; --line:#d9e0e8; --row:#eef2f7;
+  --navy:#0b2540; --teal:#0e7c86; --brick:#c8553d; --amber:#d9951f; --steel:#4a6fa5; --on:#fff;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#0b141d; --surface:#122030; --ink:#e6edf4; --ink2:#93a3b3; --line:#223446; --row:#172a3d;
+  --navy:#06121e; --teal:#3cc0cb; --brick:#ef7d63; --amber:#f0b44d; --steel:#7ea3d8; --on:#06121e;}
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'IBM Plex Sans Arabic','Segoe UI',Tahoma,Arial,sans-serif;line-height:1.85;font-size:16px;
+  padding-bottom:env(safe-area-inset-bottom,0px);font-variant-numeric:tabular-nums}
+.hero{background:var(--navy);color:#fff;padding:calc(env(safe-area-inset-top,0px) + 44px) 20px 48px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.hero-in{max-width:920px;margin:0 auto}
+.hero h1{font-size:clamp(30px,5.5vw,46px);font-weight:700;line-height:1.25;margin:0 0 6px}
+.hero .sub{margin:0;font-size:18px;color:#a9bdd1}
+.hero .meta{margin:18px 0 0;padding-top:14px;border-top:1px solid rgba(255,255,255,.18);font-size:14px;color:#a9bdd1;display:flex;flex-wrap:wrap;gap:4px 28px}
+.hero .meta b{color:#fff;font-weight:600}
+.stage{display:grid;grid-template-columns:200px 1fr;gap:36px;align-items:center;margin-top:34px}
+.ring{width:200px;height:200px}
+.ring text{fill:#fff;font-family:inherit}
+.stats{display:grid;grid-template-columns:repeat(3,1fr)}
+.stats div{padding:0 22px;border-inline-start:1px solid rgba(255,255,255,.18)}
+.stats div:first-child{border-inline-start:0;padding-inline-start:0}
+.stats b{display:block;font-size:clamp(34px,6vw,52px);font-weight:600;line-height:1.1}
+.stats span{font-size:14px;color:#a9bdd1}
+main{max-width:920px;margin:0 auto;padding:12px 20px 64px}
+h2{font-size:22px;font-weight:700;margin:48px 0 14px;padding-bottom:10px;border-bottom:2px solid var(--ink);display:flex;align-items:center;gap:10px}
+h2::before{content:"";width:10px;height:10px;background:var(--teal);border-radius:2px;flex:none}
+p{margin:0 0 12px;max-width:72ch}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--surface);margin:12px 0 20px}
+table{width:100%;border-collapse:collapse;font-size:15px;min-width:480px}
+th,td{padding:11px 16px;text-align:center;border-bottom:1px solid var(--line)}
+th{background:var(--row);font-weight:600;font-size:14px;color:var(--ink2)}
+td:first-child,th:first-child{text-align:start}
+tr:last-child td{border-bottom:0}
+tr.total td{font-weight:700;background:var(--row);border-top:2px solid var(--ink)}
+td.rate{min-width:170px}
+.rt{display:flex;align-items:center;gap:10px;justify-content:center}
+.rt b{font-weight:600;min-width:62px;text-align:end}
+.rb{flex:1;height:8px;background:var(--row);border-radius:4px;overflow:hidden;max-width:90px}
+.rb i{display:block;height:100%;border-radius:4px}
+td.low b{color:var(--brick)}
+.dot{display:inline-block;width:10px;height:10px;border-radius:2px;margin-inline-end:10px}
+.fig{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 16px 12px;margin:18px 0}
+.fig h3{font-size:17px;margin:0 4px 4px;font-weight:600}
+.fig .cap{font-size:13px;color:var(--ink2);margin:8px 4px 0}
+.stack{display:flex;height:40px;border-radius:4px;overflow:hidden;margin:16px 4px 14px;direction:rtl;gap:2px}
+.stack div{display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:var(--on);min-width:0}
+.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:6px 16px;margin:0 4px;font-size:14px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-inline-end:8px}
+svg{display:block;width:100%;height:auto}
+svg text{font-family:inherit;fill:var(--ink)}
+svg .s2{fill:var(--ink2)}
+ul{padding-inline-start:0;margin:0 0 12px;list-style:none}
+li{padding:12px 0 12px 0;border-bottom:1px solid var(--line);max-width:74ch;padding-inline-start:20px;position:relative}
+li::before{content:"";position:absolute;inset-inline-start:0;top:1.2em;width:8px;height:8px;border-radius:50%;background:var(--teal)}
+@media (max-width:640px){.stage{grid-template-columns:1fr;justify-items:center;gap:24px}.stats{width:100%}.stats div{padding:0 12px}}
+@media print{body{background:#fff}.fig,.scroll{break-inside:avoid}}
+
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px);scroll-behavior:smooth}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--navy);z-index:40}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--navy);border-bottom:1px solid rgba(255,255,255,.12)}
+.nav-in{max-width:920px;margin:0 auto;display:flex;gap:2px;overflow-x:auto;padding:0 12px}
+.nav a{color:#a9bdd1;text-decoration:none;font-size:14px;font-weight:500;padding:13px 12px;white-space:nowrap;border-bottom:3px solid transparent}
+.nav a:hover{color:#fff}.nav a.on{color:#fff;border-bottom-color:#3cc0cb}
+.prog{position:absolute;right:0;top:0;height:2px;width:0;background:#3cc0cb}
+:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+#rc{transition:stroke-dasharray 1.2s cubic-bezier(.2,.7,.2,1)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.chip{font:inherit;font-size:14px;padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.chip:hover{border-color:var(--teal)}
+.chip[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 18px 12px;margin:0 0 20px}
+.ph{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;align-items:baseline;margin-bottom:14px}
+.ph b{font-size:18px;font-weight:700}
+.delta{font-size:14px;font-weight:600}.delta.pos{color:var(--teal)}.delta.neg{color:var(--brick)}.delta.eq{color:var(--ink2)}
+.pm{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));row-gap:12px;margin-bottom:16px}
+.pm div{padding:0 16px;border-inline-start:1px solid var(--line)}.pm div:first-child{border-inline-start:0;padding-inline-start:0}
+.pm b{display:block;font-size:30px;font-weight:600;line-height:1.2}.pm span{font-size:13px;color:var(--ink2)}
+.gl{font-size:13px;color:var(--ink2)}
+.gt{position:relative;height:12px;background:var(--row);border-radius:6px;margin:8px 0 18px}
+.gf{position:absolute;right:0;top:0;height:100%;border-radius:6px;transform-origin:100% 50%;animation:grow .5s ease-out}
+.gm{position:absolute;top:-5px;width:2px;height:22px;background:var(--ink)}
+@keyframes grow{from{transform:scaleX(0)}}
+@media (prefers-reduced-motion:reduce){.gf{animation:none}html{scroll-behavior:auto}#rc{transition:none}}
+tr[data-i]{cursor:pointer}tr[data-i]:hover td{background:var(--row)}tr.sel td{background:var(--row);font-weight:600}tr.sel td:first-child{box-shadow:inset -4px 0 0 var(--teal)}
+.fig{position:relative}
+.tip{position:absolute;pointer-events:none;background:var(--navy);color:#fff;font-size:13px;line-height:1.6;padding:8px 12px;border-radius:6px;transform:translate(-50%,-110%);white-space:nowrap;z-index:5;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.tip[hidden]{display:none}
+.cb{cursor:pointer;outline:none;transition:opacity .2s}.cb.dim{opacity:.35}
+.cb:hover .bar,.cb:focus-visible .bar{stroke:var(--ink);stroke-width:2}.cb.on .bar{stroke:var(--ink);stroke-width:3}
+.hint{font-size:13px;color:var(--ink2);margin:0 0 4px}
+
+.fbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--bg);border-bottom:1px solid var(--line)}
+.fb-in{max-width:920px;margin:0 auto;padding:10px 20px;display:flex;flex-direction:column;gap:8px}
+.chips{margin:0;flex-wrap:nowrap;overflow-x:auto;padding-bottom:2px}.chip{white-space:nowrap}
+.frow{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.srch{flex:1;min-width:180px;font:inherit;font-size:14px;padding:8px 12px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink)}
+.rst{font:inherit;font-size:13px;color:var(--brick);background:none;border:0;cursor:pointer;text-decoration:underline}
+.rst[hidden]{display:none}
+.rows{display:grid;gap:6px;margin:12px 0}
+.rw{display:grid;grid-template-columns:minmax(120px,240px) 1fr 84px;gap:12px;align-items:center;font:inherit;font-size:14px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:9px 12px;cursor:pointer;text-align:start;transition:opacity .2s}
+.rw:hover{border-color:var(--teal)}.rw.on{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}.rw.dim{opacity:.45}
+.rw .tr{height:12px;background:var(--row);border-radius:6px;overflow:hidden}.rw .tr i{display:block;height:100%;border-radius:6px;transition:width .35s}
+.rw b{font-weight:600;text-align:end}
+.lg2{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--ink2);margin:4px 0 0}
+.heat{border-collapse:separate;border-spacing:3px;min-width:640px;font-size:13px}
+.heat th{background:none;font-size:12px;padding:4px;font-weight:500}
+.heat th:first-child{white-space:nowrap;padding-inline-end:12px}
+.heat td{padding:0;border:0;height:36px}
+.hc{width:100%;height:100%;min-width:54px;border:0;border-radius:4px;font:inherit;font-size:13px;font-weight:600;cursor:pointer;color:var(--ink)}
+.hc.z{background:var(--row);color:var(--ink2);font-weight:400;cursor:default}
+.hc.sel{outline:2px solid var(--ink);outline-offset:1px}
+.case{display:grid;grid-template-columns:58px 120px 1fr;gap:12px;padding:12px 4px;border-bottom:1px solid var(--line);align-items:start}
+.case .id{font-weight:700;color:var(--ink2)}
+.case small{display:block;color:var(--ink2);font-size:12.5px}
+.two{font-size:12px;font-weight:600;background:var(--row);border-radius:4px;padding:1px 6px;margin-inline-start:6px}
+.empty{padding:28px;text-align:center;color:var(--ink2)}
+@media(max-width:640px){.rw{grid-template-columns:1fr 70px}.rw .tr{grid-column:1/-1;order:3}.case{grid-template-columns:48px 1fr}.case .mo{grid-column:2}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="hero-in">
+  <h1>تقرير حالات الإلغاء</h1>
+  <p class="sub">أسباب إلغاء الطلبات وتوزيعها على الأشهر</p>
+  <div class="stats" style="margin-top:30px">
+    <div><b>73</b><span>طلبًا ملغى</span></div>
+    <div><b>70</b><span>حالة موثّقة (3 منها كرسيان)</span></div>
+    <div><b>34.25%</b><span>أسباب مرتبطة بالتشغيل والشحن</span></div>
+  </div>
+  <p class="meta"><span>الفترة: <b>أبريل – 16 نوفمبر</b></span><span>إعداد رئيس قسم التشغيل: <b>حسين عبدالمنعم السيد</b></span></p>
+</div></header>
+<div class="fbar"><div class="fb-in">
+  <div class="chips" id="chips" role="group" aria-label="تصفية حسب الشهر"></div>
+  <div class="frow"><input class="srch" id="q" type="search" placeholder="ابحث في الحالات (رقم الطلب أو كلمة من السبب)" aria-label="بحث"><button class="rst" id="rst" hidden>إلغاء كل التصفيات</button></div>
+</div></div>
+<main>
+<h2>أولًا: الملخص التنفيذي</h2>
+<p>يعرض هذا التقرير أسباب إلغاء 73 طلبًا خلال الفترة من أبريل حتى 16 نوفمبر، موثّقة في 70 حالة (ثلاث حالات منها لطلب كرسيين، أرقامها 118 و226 و240). صُنّفت الحالات إلى تسعة أسباب رئيسية، وجُمعت ثلاثة منها (التأخر، الاستلام والدفع، التجربة قبل الدفع) كأسباب مرتبطة بالتشغيل والشحن.</p>
+<ul>
+  <li>أكبر الأسباب هو الشراء من مكان آخر أو وجود سعر/بديل أفضل: 14 طلبًا (19.18%).</li>
+  <li>التأخر أو عدم توفر الشحنة في الموعد هو السبب الثاني: 12 طلبًا (16.44%)، وتركّز في أغسطس (8 من 13 طلبًا ملغى في الشهر).</li>
+  <li>الأسباب المرتبطة بالتشغيل والشحن مجتمعة: 25 طلبًا (34.25%).</li>
+  <li>حصل 8 عملاء (10.96%) على الكرسي مجانًا أو هدية أو من مستشفى.</li>
+  <li>7 طلبات (9.59%) أُلغيت دون ذكر سبب، وهو ما يستدعي توثيق السبب عند كل إلغاء.</li>
+</ul>
+
+<h2>ثانيًا: أسباب الإلغاء</h2>
+<p>اضغط على أي سبب لعرض حالاته، أو اختر شهرًا من الشريط العلوي لعرض أسبابه.</p>
+<div class="panel" id="kp" aria-live="polite"></div>
+<div class="rows" id="rows"></div>
+<div class="lg2"><span><i class="dot" style="background:var(--brick)"></i>أسباب مرتبطة بالتشغيل والشحن</span><span><i class="dot" style="background:var(--steel)"></i>أسباب من جانب العميل</span></div>
+
+<h2>ثالثًا: سجل حالات الإلغاء</h2>
+<p id="cnt" aria-live="polite"></p>
+<div id="cases"></div>
+</main>
+<script>
+const MN=['أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر (1–16)'];
+const MS=['أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر*'];
+const CN=['شراء من مكان آخر أو سعر/بديل أفضل','حصل على الكرسي مجانًا أو هدية أو من مستشفى','تأخر الشحن أو عدم توفر الشحنة في الموعد','رفض الاستلام ومشكلات التسليم والدفع','مواصفات غير مناسبة (وزن / مقاس / عجلات)','رغبة في التجربة قبل الدفع','عدم موافقة الأسرة','تغيّر الظروف أو انتهاء الحاجة','لم يُذكر سبب'];
+const CS=['بديل / سعر','مجانًا / هدية','تأخر الشحن','الاستلام والدفع','مواصفات','التجربة','رفض الأسرة','تغيّر الظروف','بلا سبب'];
+const OP=[2,3,5];
+const R=[
+[11,0,1,'أخبرتنا أنها حصلت على كرسي مجانًا'],[13,0,4,'طلب الإلغاء بسبب وزن الكرسي'],[16,0,0,'طلب الإلغاء لشراء كرسي آخر'],[21,0,8,'لم يبلغنا بسبب الإلغاء'],[3,0,7,'أفاد بأنه لا يحتاج إلى المنتج'],[39,0,6,'الأهل لم يوافقوا على الطلب'],[4,0,1,'حصلت على الكرسي مجانًا'],
+[42,1,6,'الوالد رفض رغم محاولة العميل إقناعه'],[30,1,3,'تعذّر الاستلام من المخزن، وبوكسيت لا يوصل لمنطقته'],[38,1,7,'توفي صاحب الحاجة إلى الكرسي'],[71,1,5,'يرى ألا يُدفع قبل الموافقة بعد التجربة (عُرضت تجربة يوم)'],
+[92,2,7,'لم تتوافق ظروف السفر بالطائرة فألغى'],[112,2,4,'مقاس الكرسي صغير وغير مناسب'],[117,2,7,'المستفيد لن يعود معه إلى الإمارات'],[31,2,3,'تعذّر الاتصال وعدم تأكيد الدفع عند الاستلام'],[41,2,8,'طلب العميل الإلغاء دون ذكر سبب'],[97,2,3,'رفض الاستلام بعد تواصل شركة الشحن'],[109,2,1,'أبناؤها اشتروا لها كرسيًا'],[110,2,0,'حصلت على كرسي بسعر أقل'],[121,2,6,'والدته رفضت'],
+[173,3,8,'لا يريد الكرسي ولم يذكر سببًا'],[152,3,3,'لم تؤمّن المبلغ المطلوب'],[160,3,8,'طلب العميل الإلغاء من بوكسيت'],[189,3,0,'كان يريد منتجًا آخر'],[195,3,7,'لم تعد بحاجة إليه الآن'],[151,3,3,'رفض استلام الكرسي من المندوب'],[154,3,0,'تم الشراء من مكان آخر'],[183,3,2,'اشترى من مكان آخر بسبب تأخر الشحنة'],[184,3,2,'تأخر الكرسي في الشحن فاشترت من مكان آخر'],[193,3,1,'استلمت كرسيًا من المستشفى'],[118,3,0,'وجد كرسيًا أخف وأرخص (16 كجم مع البطارية)',2],[187,3,2,'تريد الاستلام قبل يوم 7 ولم تتأكد الشحنة'],[192,3,8,'لم يذكر سبب الإلغاء'],[134,3,6,'من كان سيهديها الكرسي لا يريده'],[185,3,0,'شقيقه طلب كرسيًا من موقع آخر'],[178,3,1,'المستشفى وفّرت لها كرسيًا'],[191,3,2,'تأخر الشحنة فاشترى من مكان آخر'],[204,3,5,'رغبة العميل في التجربة'],[94,3,6,'والدتها لا تريده'],[125,3,4,'وجدت الكرسي أثقل مما قيل (يحتاج رجلين)'],
+[215,4,0,'وجده على أمازون بمميزات أفضل'],[222,4,7,'ظروف خارجة عن إرادتها'],[226,4,2,'تأخر الطلب',2],[231,4,2,'تأخر التسليم وحصل عليه من مكان آخر'],[257,4,2,'تأخر بوكسيت وعدم إرسال الطلب في اليوم المحدد'],[201,4,2,'تريد التوصيل غدًا لسفرها ولم تتوفر الشحنة'],[237,4,1,'متبرع اشترى الكرسي، فأُلغي الطلب الأول منعًا للتكرار'],[235,4,2,'ينتظر منذ 5 أيام وسيسافر غدًا'],[240,4,5,'يريد تجربة الكرسي الأول قبل توصيل الكرسيين',2],[209,4,2,'تأخرت شحنة الكراسي والعميل مستعجل'],[228,4,2,'تأخر الوصول وحصل عليه هدية'],
+[318,5,8,'لم يُذكر السبب'],[279,5,5,'بعيدة عن المعرض وتريد التجربة قبل الدفع ولا يتيحها بوكسيت'],[230,5,8,'طلب العميل الإلغاء من بوكسيت'],[301,5,0,'اشترى كرسيًا من مكان آخر'],[323,5,3,'رفض الاستلام وطلب الإلغاء من شركة الشحن'],[283,5,3,'رفضت دفع المبلغ كاملًا لبوكسيت وطلبت دفع 2000 درهم'],[270,5,0,'شقيقها اشترى من مكان آخر'],[284,5,1,'والد العميل استلم كرسيًا من المستشفى'],
+[357,6,0,'طلبت من مكان آخر'],[372,6,4,'رفض الاستلام بسبب العجلات الخلفية الهوائية'],[330,6,6,'الزوج غير موافق على الاستلام'],[334,6,3,'رفض الاستلام من شركة الشحن'],[340,6,0,'قيل له إن السعر غالٍ'],[369,6,4,'رفض الاستلام بسبب الوزن'],[377,6,4,'المقاس غير مناسب'],
+[412,7,0,'الوالدة اشترت الكرسي الشهر الماضي'],[419,7,1,'جاءها الكرسي هدية'],[403,7,0,'وجدت كرسيًا أرخص ورفضت الاستلام قبل وصول المندوب بـ20 دقيقة'],[413,7,4,'رفضت الاستلام لعدم المناسبة ولم تدفع مصاريف الشحن']];
+const $=id=>document.getElementById(id);
+const w=r=>r[4]||1,sum=l=>l.reduce((s,r)=>s+w(r),0),pct=(a,b)=>b?(a/b*100).toFixed(2)+'%':'0.00%';
+const TOT=sum(R),isOp=c=>OP.includes(c),col=c=>isOp(c)?'--brick':'--steel';
+let fm=null,fc=null,q='';
+const byM=l=>fm===null?l:l.filter(r=>r[1]===fm);
+const cnt=(l,c)=>sum(l.filter(r=>r[2]===c));
+
+function chips(){
+ $('chips').innerHTML=['كل الأشهر',...MN].map((l,i)=>`<button class="chip" data-m="${i-1}" aria-pressed="${fm===i-1}">${l}</button>`).join('');
+}
+function kp(){
+ const l=R.filter(r=>(fm===null||r[1]===fm)&&(fc===null||r[2]===fc)),n=sum(l);
+ const per=CN.map((_,c)=>cnt(l,c)),top=per.indexOf(Math.max(...per)),op=sum(l.filter(r=>isOp(r[2])));
+ const title=[fm===null?'كل الأشهر':MN[fm],fc===null?'كل الأسباب':CS[fc]].join(' · ');
+ $('kp').innerHTML=`<div class="ph"><b>${title}</b></div><div class="pm"><div><b>${n}</b><span>طلبًا ملغى</span></div><div><b>${l.length}</b><span>حالة موثّقة</span></div><div><b>${pct(n,TOT)}</b><span>من إجمالي الإلغاءات (${TOT})</span></div><div><b style="color:var(--brick)">${pct(op,n)}</b><span>مرتبطة بالتشغيل والشحن</span></div></div>`+(n&&fc===null?`<span class="gl">أبرز سبب: ${CN[top]} (${per[top]} طلبًا، ${pct(per[top],n)})</span>`:'');
+}
+function rows(){
+ const l=byM(R),n=sum(l),per=CN.map((_,c)=>cnt(l,c)),mx=Math.max(...per,1);
+ const ord=per.map((v,c)=>c).sort((a,b)=>per[b]-per[a]||a-b);
+ $('rows').innerHTML=ord.map(c=>`<button class="rw ${fc===c?'on':''} ${fc!==null&&fc!==c?'dim':''}" data-c="${c}" aria-pressed="${fc===c}"><span>${dot(c)}${CN[c]}</span><span class="tr"><i style="width:${per[c]/mx*100}%;background:var(${col(c)})"></i></span><b>${per[c]} (${pct(per[c],n)})</b></button>`).join('');
+}
+const dot=c=>`<i class="dot" style="background:var(${col(c)})"></i>`;
+function cases(){
+ const k=q.trim(),l=R.filter(r=>(fm===null||r[1]===fm)&&(fc===null||r[2]===fc)&&(!k||String(r[0])===k||r[3].includes(k)));
+ $('cnt').textContent=`عدد الحالات المعروضة: ${l.length} (${sum(l)} طلبًا ملغى)`;
+ $('cases').innerHTML=l.length?l.map(r=>`<div class="case"><span class="id">#${r[0]}</span><span class="mo">${MN[r[1]]}</span><div>${r[3]}${w(r)>1?'<span class="two">كرسيان</span>':''}<small>${dot(r[2])}${CN[r[2]]}</small></div></div>`).join(''):'<div class="empty">لا توجد حالات مطابقة للتصفية الحالية.</div>';
+}
+function render(){
+ chips();kp();rows();cases();
+ $('rst').hidden=fm===null&&fc===null&&!q;
+}
+document.addEventListener('click',e=>{
+ const b=e.target.closest('[data-m],[data-c]');
+ if(b){
+  if(b.dataset.m!==undefined){const m=+b.dataset.m;fm=(m<0||fm===m)?null:m}
+  else{const c=+b.dataset.c;fc=fc===c?null:c}
+    render();
+ }
+});
+$('q').addEventListener('input',e=>{q=e.target.value;cases();$('rst').hidden=fm===null&&fc===null&&!q});
+$('rst').addEventListener('click',()=>{fm=null;fc=null;q='';$('q').value='';render()});
+render();
+</script>
+</body>
+</html>
